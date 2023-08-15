@@ -18,7 +18,6 @@ const Signup = ({ user, setUser }) => {
       lastName: e.target.lastName.value,
       username: e.target.username.value,
       password: e.target.password.value,
-      strategy: e.target.strategy.value,
     };
 
     fetch('http://localhost:5000/signup', {
@@ -65,7 +64,6 @@ const Signup = ({ user, setUser }) => {
           <label htmlFor="password">Password</label>
           <input type="password" name="password" id="password" required />
         </div>
-        <input type="hidden" id="strategy" name="strategy" value="local" />
         <button type="submit">Sign up</button>
       </form>
       {errorMessage && <p>{errorMessage}</p>}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Book from "../pages/Book";
+import Book from "./Book";
 
 const Home = () => {
   const [books, setBooks] = useState([]);

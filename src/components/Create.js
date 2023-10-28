@@ -76,7 +76,7 @@ const Create = () => {
         />
         <label htmlFor="synopsis">Synopsis</label>
         <textarea name="synopsis" id="synopsis" cols="30" rows="10" required>
-          {" "}
+          {""}
         </textarea>
         <button type="submit">Create</button>
       </form>

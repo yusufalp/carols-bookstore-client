@@ -8,7 +8,7 @@ const Book = ({ book }) => {
       </a>
       <p>{book.title}</p>
       <p>
-        <em>by</em>
+        <em>by </em>
         {book.author}
       </p>
     </div>

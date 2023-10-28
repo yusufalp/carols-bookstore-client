@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ user, setUser }) => {
   const navigate = useNavigate();
@@ -7,7 +7,7 @@ const Login = ({ user, setUser }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   if (user.username) {
-    navigate('/admin');
+    navigate("/admin");
   }
 
   const handleLoginFormSubmit = (e) => {
@@ -15,31 +15,43 @@ const Login = ({ user, setUser }) => {
 
     const body = {
       username: e.target.username.value,
-      password: e.target.password.value
+      password: e.target.password.value,
     };
 
     fetch(`http://localhost:5000/login/local`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     })
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         if (response.statusCode === 200) {
           localStorage.setItem("user", JSON.stringify(response.data));
           setUser(response.data);
-          navigate('/admin');
+          navigate("/admin");
         } else {
           throw new Error(response.error.message);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("errLogin", error);
         setErrorMessage(error.message);
       });
   };
+
+  // const handleGoogleLogin = async () => {
+  //   fetch(`http://localhost:5000/auth/google`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //     .then(response => response.json())
+  //     .then(response => console.log(response))
+  //     .catch(err => console.log(err));
+  // };
 
   return (
     <React.Fragment>
@@ -56,6 +68,7 @@ const Login = ({ user, setUser }) => {
         <button type="submit">Log in</button>
       </form>
       {errorMessage && <p>{errorMessage}</p>}
+      {/* <button onClick={handleGoogleLogin}>Login with Google</button> */}
     </React.Fragment>
   );
 };

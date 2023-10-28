@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Admin = ({ user }) => {
   const [books, setBooks] = useState([]);
@@ -7,14 +7,14 @@ const Admin = ({ user }) => {
   const [isDeleted, setIsDeleted] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/books', {
-      method: 'GET',
+    fetch("http://localhost:5000/api/books", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         console.log(response);
         if (response.statusCode === 200) {
           setBooks(response.data);
@@ -23,9 +23,8 @@ const Admin = ({ user }) => {
           throw new Error(response.error);
         }
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }, [isDeleted]);
-
 
   const handleDeleteBook = (bookId) => {
     setIsDeleted(false);
@@ -33,13 +32,13 @@ const Admin = ({ user }) => {
 
     if (deleteConfirmation) {
       fetch(`http://localhost:5000/api/books/delete/${bookId}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Content-Type': 'application/json'
-        }
+          "Content-Type": "application/json",
+        },
       })
-        .then(response => response.json())
-        .then(response => {
+        .then((response) => response.json())
+        .then((response) => {
           console.log(response);
           if (response.statusCode === 200) {
             setIsDeleted(true);
@@ -47,7 +46,7 @@ const Admin = ({ user }) => {
             throw new Error(response.error.message);
           }
         })
-        .catch(error => console.log(error));
+        .catch((error) => console.log(error));
     }
   };
 
@@ -56,33 +55,36 @@ const Admin = ({ user }) => {
       <h1>Admin</h1>
       <p>Welcome, {user.firstName}</p>
 
-      <p><a href="/create">Create a New Book</a></p>
-      {isLoading
-        ? <p>Loading...</p>
-        : (
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Rating</th>
-                <th colSpan="2">Actions</th>
+      <p>
+        <a href="/create">Create a New Book</a>
+      </p>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Rating</th>
+              <th colSpan="2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.map((book) => (
+              <tr key={book._id}>
+                <td>{book.title}</td>
+                <td>{book.author}</td>
+                <td>{book.rating}</td>
+                <td>
+                  <Link to={`/books/${book._id}/update`}>Update</Link>
+                </td>
+                <td onClick={() => handleDeleteBook(book._id)}>Delete</td>
               </tr>
-            </thead>
-            <tbody>
-              {books.map(book => (
-                <tr key={book._id}>
-                  <td>{book.title}</td>
-                  <td>{book.author}</td>
-                  <td>{book.rating}</td>
-                  <td><Link to={`/books/${book._id}/edit`}>Edit</Link></td>
-                  <td onClick={() => handleDeleteBook(book._id)}>Delete</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )
-      }
+            ))}
+          </tbody>
+        </table>
+      )}
     </React.Fragment>
   );
 };

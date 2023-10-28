@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Book from "./Book";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -32,7 +31,21 @@ const Home = () => {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          books.map((book) => <Book key={book._id} book={book} />)
+          books.map((book) => (
+            <div className="container-single-book-index">
+              <a href="#">
+                <img
+                  className="image-cover-index"
+                  src={`/images/${book.image}`}
+                  alt={book.title}
+                />
+              </a>
+              <br />
+              <p>{book.title}</p>
+              <p>{book.rating} stars</p>
+              <a href="#">Details</a>
+            </div>
+          ))
         )}
       </div>
     </React.Fragment>

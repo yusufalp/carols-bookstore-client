@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = ({ user, setUser }) => {
   const navigate = useNavigate();
@@ -7,7 +7,7 @@ const Signup = ({ user, setUser }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   if (user.username) {
-    navigate('/admin');
+    navigate("/admin");
   }
 
   const handleSignupFormSubmit = (e) => {
@@ -20,25 +20,25 @@ const Signup = ({ user, setUser }) => {
       password: e.target.password.value,
     };
 
-    fetch('http://localhost:5000/signup', {
-      method: 'POST',
+    fetch("http://localhost:8080/signup", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     })
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         console.log(response);
         if (response.statusCode === 201) {
           setUser(response.data);
           localStorage.setItem("user", JSON.stringify(response.data));
-          navigate('/admin');
+          navigate("/admin");
         } else {
           throw new Error(response.error.message);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("errSignup", error.message);
         setErrorMessage(error.message);
       });

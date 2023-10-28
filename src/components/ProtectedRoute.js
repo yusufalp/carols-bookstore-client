@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router';
+import React from "react";
+import { Navigate, Outlet } from "react-router";
 
 const ProtectedRoute = ({ user }) => {
   if (!user.username) {

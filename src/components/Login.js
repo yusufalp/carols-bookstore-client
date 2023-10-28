@@ -18,7 +18,7 @@ const Login = ({ user, setUser }) => {
       password: e.target.password.value,
     };
 
-    fetch(`http://localhost:5000/login/local`, {
+    fetch(`http://localhost:8080/login/local`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

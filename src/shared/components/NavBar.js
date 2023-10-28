@@ -1,30 +1,30 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ user, setUser }) => {
   const navigate = useNavigate();
 
   console.log("u", user);
   const handleLogout = () => {
-    fetch(`http://localhost:5000/logout`, {
-      method: 'GET',
+    fetch(`http://localhost:8080/logout`, {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         if (response.statusCode === 200) {
           setUser({});
           localStorage.removeItem("user");
-          navigate('/');
+          navigate("/");
         } else {
           throw new Error(response.error);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("errLogout", error);
-        navigate('/admin');
+        navigate("/admin");
       });
   };
 
@@ -32,23 +32,38 @@ const NavBar = ({ user, setUser }) => {
     <nav>
       <ul className="nav-links">
         <div>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+          <li>
+            <a href="/contact">Contact</a>
+          </li>
         </div>
         <div>
-          {user.username
-            ?
+          {user.username ? (
             <React.Fragment>
-              <li><a href="/admin">Admin</a></li>
-              <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
+              <li>
+                <a href="/admin">Admin</a>
+              </li>
+              <li>
+                <button className="logout-button" onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
             </React.Fragment>
-            :
+          ) : (
             <React.Fragment>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/signup">Signup</a></li>
+              <li>
+                <a href="/login">Login</a>
+              </li>
+              <li>
+                <a href="/signup">Signup</a>
+              </li>
             </React.Fragment>
-          }
+          )}
         </div>
       </ul>
     </nav>

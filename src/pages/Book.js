@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Book = ({ book }) => {
   return (
@@ -7,7 +7,10 @@ const Book = ({ book }) => {
         <img src={`/images/${book.image}`} alt={book.title} />
       </a>
       <p>{book.title}</p>
-      <p><em>by</em>{book.author}</p>
+      <p>
+        <em>by</em>
+        {book.author}
+      </p>
     </div>
   );
 };

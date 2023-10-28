@@ -10,7 +10,7 @@ const Update = () => {
   const [postBody, setPostBody] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/books/${bookId}`, {
+    fetch(`http://localhost:8080/api/books/${bookId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +29,7 @@ const Update = () => {
     console.log("update");
     e.preventDefault();
 
-    fetch(`http://localhost:5000/api/books/update/${bookId}`, {
+    fetch(`http://localhost:8080/api/books/update/${bookId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

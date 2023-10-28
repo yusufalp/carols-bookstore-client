@@ -7,7 +7,7 @@ const Admin = ({ user }) => {
   const [isDeleted, setIsDeleted] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/books", {
+    fetch("http://localhost:8080/api/books", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const Admin = ({ user }) => {
     const deleteConfirmation = window.confirm("Do you really want to delete?");
 
     if (deleteConfirmation) {
-      fetch(`http://localhost:5000/api/books/delete/${bookId}`, {
+      fetch(`http://localhost:8080/api/books/delete/${bookId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

@@ -91,7 +91,9 @@ const Update = () => {
             onChange={handleFormFieldChange}
             required
           >
-            <option value="">Please select an option</option>
+            <option value="" disabled>
+              Please select an option
+            </option>
             <option value="BOOM! Box">BOOM! Box</option>
             <option value="DC Comics">DC Comics</option>
             <option value="Harry N. Abrams">Harry N. Abrams</option>

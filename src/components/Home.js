@@ -32,7 +32,7 @@ const Home = () => {
           <p>Loading...</p>
         ) : (
           books.map((book) => (
-            <div className="container-single-book-index">
+            <div key={book._id} className="container-single-book-index">
               <a href="#">
                 <img
                   className="image-cover-index"

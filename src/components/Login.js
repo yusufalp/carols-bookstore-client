@@ -41,18 +41,18 @@ const Login = ({ user, setUser }) => {
       });
   };
 
-  const handleGoogleLogin = async () => {
-    fetch(`http://localhost:8080/auth/google`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err));
-  };
+  // const handleGoogleLogin = async () => {
+  //   fetch(`http://localhost:8080/auth/google`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((response) => console.log(response))
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <React.Fragment>
@@ -69,7 +69,7 @@ const Login = ({ user, setUser }) => {
         <button type="submit">Log in</button>
       </form>
       {errorMessage && <p>{errorMessage}</p>}
-      <button onClick={handleGoogleLogin}>Login with Google</button>
+      {/* <button onClick={handleGoogleLogin}>Login with Google</button> */}
     </React.Fragment>
   );
 };

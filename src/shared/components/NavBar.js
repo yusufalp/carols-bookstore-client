@@ -32,17 +32,18 @@ const NavBar = ({ user, setUser }) => {
     <nav>
       <ul className="nav-links">
         <div>
+          <img
+            src="/images/CodeSquad-Comics-logo.png"
+            alt="codesquad comics logo"
+          />
+        </div>
+        <div>
           <li>
             <a href="/">Home</a>
           </li>
           <li>
             <a href="/about">About</a>
           </li>
-          <li>
-            <a href="/contact">Contact</a>
-          </li>
-        </div>
-        <div>
           {user.username ? (
             <React.Fragment>
               <li>

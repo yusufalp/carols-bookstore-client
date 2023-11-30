@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import NavBar from "./shared/components/NavBar";
+import Footer from "./shared/components/Footer";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./components/Home";
@@ -41,6 +42,7 @@ function App() {
         </Route>
         <Route path="/*" element={<h1>Not Found</h1>} />
       </Routes>
+      <Footer />
     </div>
   );
 }

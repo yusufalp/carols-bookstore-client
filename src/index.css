@@ -19,6 +19,7 @@ code {
 }
 
 h1,
+h2,
 p {
   text-align: center;
 }
@@ -56,6 +57,10 @@ p {
 
 .nav-links li a.active {
   background-color: #4caf50;
+}
+
+.nav-links img {
+  height: 120px;
 }
 
 .logout-button {
